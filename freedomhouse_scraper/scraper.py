@@ -56,8 +56,8 @@ def yield_latest_allblog(begin_date, max_num=10, sleep=1.0):
             d_news = strf_to_datetime(news_json['time'], news_dateformat)
             if d_begin > d_news:
                 outdate = True
-                print('Stop scrapping. {} / {} news was scrapped'.format(n_news, max_num))
-                print('The oldest news has been created after {}'.format(begin_date))
+                print('Stop scrapping. {} / {} blog category was scrapped'.format(n_news, max_num))
+                print('The oldest blog category has been created after {}'.format(begin_date))
                 break
 
             # yield
@@ -88,7 +88,7 @@ def get_allblog_urls(begin_page=0, end_page=3, verbose=True):
         links = ['https://freedomhouse.org' + i.find('a')['href'] for i in sub_links]
         links_all += links
         if verbose:
-            print('get briefing statement urls {} / {}'.format(page, end_page))
+            print('get briefing blog statement urls {} / {}'.format(page, end_page))
     return links_all
 
 def get_last_blogpage_num():
@@ -152,8 +152,8 @@ def yield_latest_pr(begin_date, max_num=50, sleep=1.0):
             d_news = strf_to_datetime(news_json['time'], news_dateformat)
             if d_begin > d_news:
                 outdate = True
-                print('Stop scrapping. {} / {} news was scrapped'.format(n_news, max_num))
-                print('The oldest news has been created after {}'.format(begin_date))
+                print('Stop scrapping. {} / {} pressrelease category was scrapped'.format(n_news, max_num))
+                print('The oldest pressrelease category has been created after {}'.format(begin_date))
                 break
 
             # yield
@@ -190,7 +190,7 @@ def get_PR_urls(begin_page=0, end_page=3, verbose=True):
         links = ['https://freedomhouse.org' + i.find('a')['href'] for i in sub_links]
         links_all += links
         if verbose:
-            print('get briefing statement urls {} / {}'.format(page, end_page))
+            print('get briefing pressrelease statement urls {} / {}'.format(page, end_page))
     return links_all
 
 def get_last_PR_num():
@@ -255,8 +255,8 @@ def yield_latest_init(begin_date, max_num=50, sleep=1.0):
             d_news = strf_to_datetime(news_json['time'], news_dateformat)
             if d_begin > d_news:
                 outdate = True
-                print('Stop scrapping. {} / {} news was scrapped'.format(n_news, max_num))
-                print('The oldest news has been created after {}'.format(begin_date))
+                print('Stop scrapping. {} / {} initiatives category was scrapped'.format(n_news, max_num))
+                print('The oldest initiatives category has been created after {}'.format(begin_date))
                 break
 
             # yield
@@ -294,7 +294,7 @@ def get_allinit_urls(begin_page=0, end_page=3, verbose=True):
         links = ['https://freedomhouse.org' + i.find('a')['href'] for i in sub_links]
         links_all += links
         if verbose:
-            print('get briefing statement urls {} / {}'.format(page, end_page))
+            print('get briefing initiatives statement urls {} / {}'.format(page, end_page))
     return links_all
 
 
