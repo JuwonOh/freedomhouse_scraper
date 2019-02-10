@@ -31,13 +31,17 @@ The oldest news has been created after 2018-07-01
 
 특정한 페이지를 parse하기 위해서는
 
-```python
-from Cato_scraper import parse_page
-from Cato_scraper import get_allnews_urls
+```
+from freedomhouse_scraper import yield_latest_allblog
 
-urls = get_allnews_urls(begin_page=1, end_page=3, verbose=True)
-for url in urls[:3]:
-    json_object = parse_page(url)    
+begin_date = '2018-07-01'
+max_num = 50
+sleep = 1.0
+
+for i, json_obj in enumerate(yield_latest_allblog(begin_date, max_num, sleep)):
+    title = json_obj['title']
+    time = json_obj['time']
+    print('[{} / {}] ({}) {}'.format(i+1, max_num, time, title))
 ```
 
 ## 참고 코드
