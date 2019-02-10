@@ -29,7 +29,7 @@ Stop scrapping. 32 / 50 news was scrapped
 The oldest news has been created after 2018-07-01
 ```
 
-특정한 페이지를 parse하기 위해서는
+특정한 페이지를 parse하기 위해서는 usage파일을 참조하세요.
 
 ```
 from freedomhouse_scraper import yield_latest_allblog
