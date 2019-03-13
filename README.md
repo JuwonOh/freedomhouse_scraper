@@ -20,12 +20,13 @@ Using Python script with arguments
 | sleep | 1.0 | Sleep time for each news |
 | verbose | False, store_true | If True use verbose mode |
 
+만일 2018년 7월 1일부터 작성된 자료를 1000개까지 받고 싶다면, "scraping_latest_news.py --begin_date 2018/07/01 --directory ./output -- max_num 1000 --sleep 1.0"을 실행코드로 입력해주시면 됩니다.
+
 ```
 python scraping_latest_news.py
 ```
 
 최근 순서대로 크롤링한 파일을 살펴보고 싶을때는 usage.ipynb를 사용하세요.
-
 
 ```
 from freedomhouse_scraper import yield_latest_allblog
