@@ -52,7 +52,6 @@ for i, json_obj in enumerate(yield_latest_allblog(begin_date, max_num, sleep)):
 [8 / 50] (December 13, 2018) U.S. Senate Condemns Saudi Crown Prince for Khashoggi Murder
 [9 / 50] (December 13, 2018) Ethiopia: MCC Recognizes Opportunity for Democratic Reform
 [10 / 50] (December 7, 2018) Crimea: Release Leading Attorney Detained on Trumped-Up Charges
-
 Stop scrapping. 32 / 50 news was scrapped
 The oldest news has been created after 2018-07-01
 ```
