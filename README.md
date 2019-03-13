@@ -1,18 +1,44 @@
 # freedomhouse_scraper
 
-미국의 씽크탱크인(Freedom House)의 자료들(Blog, Press Release, initiatives)을 받아오기 위한 크롤러입니다.
+미국의 씽크탱크인(Freedom House, https://freedomhouse.org)의 자료들(Blog, Press Release, initiatives)을 받아오기 위한 크롤러입니다.
 
 ## User guide
 
-크롤러의 파이썬 파일은 util.py, scraper.py 그리고 parser.py 총 세가지로 구성되어 있습니다. 
-util.py는 크롤링 한 파이썬의 beautifulsoup 패키지를 받아서 url내의 html정보를 정리합니다.
-scraper는 util.py내의 사이트내의 url 링크들을 get_soup함수를 통해 모아줍니다.
-parser는 이렇게 만들어진 url리스트를 통해서 각 분석들의 제목/일자/내용을 모아줍니다.
+크롤러의 파이썬 파일은 util.py, scraper.py, parser.py 그리고 scraping_latest_news.py 총 네가지로 구성되어 있습니다. 
+util.py는 크롤링 한 파이썬의 beautifulsoup 패키지를 받아서 url내의 html정보를 정리하는 등 scraper가 필요한 기본적인 기능을 가지고 있습니다.
+parser.py는 모아진 url리스트를 통해서 각 분석들의 제목/일자/내용 등의 문자, 시간 데이터들을 parsing 합니다.
+scraper.py는 사이트내의 url 링크들을 get_soup함수를 통해 모아주고, parser를 통해서 json형식으로 변환시킵니다.
+scraping_latest_news.py는 scraper.py를 통해 만들어진 json파일을 저장시켜줍니다. scraping_latest_news.py파일의 parameter는 다음과 같습니다.
+
+Using Python script with arguments
+
+| Argument name | Default Value | Note |
+| --- | --- | --- |
+| begin_date | 2018-07-01 | datetime YYYY-mm-dd |
+| directory | ./output/ | Output directory |
+| max_num | 1000 | Maximum number of news to be scraped |
+| sleep | 1.0 | Sleep time for each news |
+| verbose | False, store_true | If True use verbose mode |
 
 ```
 python scraping_latest_news.py
 ```
 
+최근 순서대로 크롤링한 파일을 살펴보고 싶을때는 usage.ipynb를 사용하세요.
+
+
+```
+from freedomhouse_scraper import yield_latest_allblog
+
+begin_date = '2018-07-01'
+max_num = 50
+sleep = 1.0
+
+for i, json_obj in enumerate(yield_latest_allblog(begin_date, max_num, sleep)):
+    title = json_obj['title']
+    time = json_obj['time']
+    print('[{} / {}] ({}) {}'.format(i+1, max_num, time, title))
+```
 ```
 [1 / 50] (January 25, 2019) Angola: New Code Protects LGBTI Community 
 [2 / 50] (January 18, 2019) DRC: African Union Intervenes to Defend Integrity of Presidential Election
@@ -29,20 +55,6 @@ Stop scrapping. 32 / 50 news was scrapped
 The oldest news has been created after 2018-07-01
 ```
 
-특정한 페이지를 parse하기 위해서는 usage파일을 참조하세요.
-
-```
-from freedomhouse_scraper import yield_latest_allblog
-
-begin_date = '2018-07-01'
-max_num = 50
-sleep = 1.0
-
-for i, json_obj in enumerate(yield_latest_allblog(begin_date, max_num, sleep)):
-    title = json_obj['title']
-    time = json_obj['time']
-    print('[{} / {}] ({}) {}'.format(i+1, max_num, time, title))
-```
 
 ## 참고 코드
 
